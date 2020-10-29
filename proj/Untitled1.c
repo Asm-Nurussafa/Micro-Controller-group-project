@@ -1,11 +1,15 @@
 #include <stdio.h>
 
-int
-main (void)
-{
-        bool  redT,yellowT,greenT,greenP,redP;
+bool  redT,yellowT,greenT,greenP,redP;
 
    int state ;
+#define RedTGreenP 0
+#define RedTRedP 1
+//... 
+
+main (void) //loop()
+{
+        
 
 
    switch (state)
@@ -17,6 +21,8 @@ main (void)
           greenT=false;
           greenP=true;
           redP=false;
+         // if(redT)//timeDelay 
+          //    state = ...;    
 
        case RedTRedP:
             redT=true;
