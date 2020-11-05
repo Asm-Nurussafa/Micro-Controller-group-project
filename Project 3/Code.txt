@@ -1,14 +1,14 @@
-const int buttnB = 13;
 const int buttnP = 5;
+const int buttnB = 13;
 const int redT = 11;
 const int yellow = 9;
 const int greenT = 8;
 const int redP = 12;
 const int greenP = 10;
-int currentstate = redT;
+int currentstate = greenT;
 
 void setup() {
-  
+
   pinMode(redT, OUTPUT);
   pinMode(yellow, OUTPUT);
   pinMode(greenT, OUTPUT);
@@ -16,191 +16,176 @@ void setup() {
   pinMode(redP, OUTPUT);
   pinMode(buttnB, INPUT);
   pinMode(buttnP, INPUT);
- 
+
 }
 
 void loop() {
+  defaultlights();
+  switch (currentstate) {
 
-    defaultlights();
+    case greenT:
 
-  switch (currentstate){
+      //case greenT for pedestrian
+      if (digitalRead (buttnP) == HIGH) {
+        switchingLights2();
+        currentstate = yellow;
 
-  case redT:
-  
-//pedestrian lights
-  if (digitalRead(buttnP) == HIGH){
-    switchingLights2();
-    currentstate = yellow;
-} 
-    
+      }
+      else if (digitalRead (buttnB) == HIGH) {
+        switchingLights1();
+        currentstate = yellow;
+      }
+
+    case yellow:
+
+      //pedestrian lights
+      if (digitalRead(buttnP) == HIGH) {
+        switchingLights2();
+        currentstate = redT;
+      }
 
 
-  case yellow:
 
-//pedestrian lights
-if (digitalRead(buttnP) == HIGH){
-    switchingLights1();
-    currentstate = greenT;
-     
-     
-  }
-    
-    
- case greenT:
+    case redT:
 
-//pedestrian lights
-if (digitalRead(buttnP) == HIGH){
-    switchingLights0();
-    currentstate = yellow;
- }
-    //driver control lights
-  else if (digitalRead(buttnB) == HIGH) {
-      switchingLights3();
-      currentstate = yellow;
-    }
+      //pedestrian lights
+      if (digitalRead(buttnP) == HIGH) {
+        switchingLights2();
+        currentstate = greenT;
+      }
+
   }
 }
+void defaultlights() {
 
-void defaultlights(){
-       
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, HIGH);
-       digitalWrite(redP, LOW);
-       delay(5000);
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, HIGH);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(5000);
 
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(2000);
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(3000);
 
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, HIGH);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(3000);
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(2000);
 
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, HIGH);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(5000);
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, HIGH);
+  digitalWrite(redP, LOW);
+  delay(5000);
 
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, HIGH);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(3000);
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(2000);
 
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(2000);
-
-      
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(3000);
 }
 
+void switchingLights2() {
 
-void switchingLights2(){
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, HIGH);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(1000);
 
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, HIGH);
-       digitalWrite(redP, LOW);
-       delay(5000);
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(1000);
+
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(1000);
+
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, HIGH);
+  digitalWrite(redP, LOW);
+  delay(10000);
+
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(1000);
+
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(1000);
 }
+void switchingLights1() {
 
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, HIGH);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(10000);
 
-void switchingLights1(){
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(5000);
 
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(1000);
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(3000);
 
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, HIGH);
-       digitalWrite(redP, LOW);
-       delay(5000);
-  
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, HIGH);
+  digitalWrite(redP, LOW);
+  delay(10000);
+
+  digitalWrite(redT, HIGH);
+  digitalWrite(yellow, LOW);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(3000);
+
+  digitalWrite(redT, LOW);
+  digitalWrite(yellow, HIGH);
+  digitalWrite(greenT, LOW);
+  digitalWrite(greenP, LOW);
+  digitalWrite(redP, HIGH);
+  delay(5000);
 }
-
-void switchingLights0(){
-      
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, HIGH);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(1000);
-
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(1000);
-
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, HIGH);
-       digitalWrite(redP, LOW);
-       delay(5000);
-  
-}
-
-void switchingLights3(){
-       
-  
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(1000);
-  
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, HIGH);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(2000);
-  
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, HIGH);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(15000);
-  
-       digitalWrite(redT, LOW);
-       digitalWrite(yellow, HIGH);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(2000);
-  
-       digitalWrite(redT, HIGH);
-       digitalWrite(yellow, LOW);
-       digitalWrite(greenT, LOW);
-       digitalWrite(greenP, LOW);
-       digitalWrite(redP, HIGH);
-       delay(2000);
-  
-}
-
-
