@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Smarthub.h"
+#include<stdlib.h>
 
 
 
@@ -23,7 +24,7 @@ bool Smarthub::reboot()
 
     if(x=='Y'||x=='y')
     {
-
+fflush(stdin);
         return true;
 
     }
